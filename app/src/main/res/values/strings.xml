@@ -1,8 +1,18 @@
 <resources>
     <string name="app_name">TestKitCard</string>
-
+    <!--Tabs-->
+    <string name="tab.list">List</string>
+    <string name="tab.map">Map</string>
     <!--Fragments names-->
     <string name="fragment.bikePointsListFragment">BikePointsListFragment</string>
     <!--BikePointsListFragment-->
     <string name="bikePointList.information">%1$s available docks of %2$s</string>
+    <!--BikePointsMapFragment-->
+    <string name="toast.error.serviceMissing">Service missing</string>
+    <string name="toast.error.updateRequired">Update required</string>
+    <string name="toast.error.connectionFailed">Location services connection failed with code: </string>
+    <string name="error.location_not_enabled">Location not enabled. Use location?</string>
+    <string name="open_location_settings">Open settings</string>
+    <string name="cancel">Cancel</string>
+    <string name="currentLocation">currentLocation></string>
 </resources>

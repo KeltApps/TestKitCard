@@ -23,7 +23,7 @@ public class BikePoint {
         @SerializedName("key")
         private String key;
         @SerializedName("value")
-        private Object value;//PROBABLY CRASH CHANGE TO OBJECT
+        private Object value;
 
         public String getKey() {
             return key;

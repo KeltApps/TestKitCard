@@ -37,7 +37,7 @@ public class BikePointsListFragment extends Fragment implements LoaderManager.Lo
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_bike_points_list, container, false);
         swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.fragment_bikePointList_swipeRefresh);
-        swipeRefreshLayout.setColorSchemeColors(ContextCompat.getColor(getActivity(),R.color.colorAccent));
+        swipeRefreshLayout.setColorSchemeColors(ContextCompat.getColor(getActivity(), R.color.colorAccent));
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -71,14 +71,24 @@ public class BikePointsListFragment extends Fragment implements LoaderManager.Lo
 
     @Override
     public void onErrorResponse(VolleyError error) {
-        getLoaderManager().initLoader(1, null, this);
-        if (swipeRefreshLayout != null)
-            swipeRefreshLayout.setRefreshing(false);
+        onMyErrorResponse();
     }
 
     @Override
     public void onResponse(String response) {
         FeedDatabase.getInstance(getActivity()).synchronizeBikePoints(response);
+        onMyResponse();
+    }
+
+
+    public void onMyErrorResponse() {
+        getLoaderManager().initLoader(1, null, this);
+        if (swipeRefreshLayout != null)
+            swipeRefreshLayout.setRefreshing(false);
+    }
+
+
+    public void onMyResponse() {
         getLoaderManager().initLoader(1, null, this);
         if (swipeRefreshLayout != null)
             swipeRefreshLayout.setRefreshing(false);
@@ -100,4 +110,5 @@ public class BikePointsListFragment extends Fragment implements LoaderManager.Lo
         if (bikePointCursorAdapter != null)
             bikePointCursorAdapter.changeCursor(null);
     }
+
 }
