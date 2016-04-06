@@ -4,28 +4,26 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.LinkedList;
 
-/**
- * Created by sergio on 6/04/16 for KelpApps.
- */
+
 public class BikePoint {
     @SerializedName("id")
     private String idBikePoint;
     @SerializedName("commonName")
     private String commonName;
-    @SerializedName("content")
+    @SerializedName("additionalProperties")
     private LinkedList<AdditionalProperty> additionalPropertyLinkedList;
     @SerializedName("lat")
     private double lat;
     @SerializedName("lon")
     private double lon;
-    private transient int availableBikes;
+    private transient int availableDocks;
     private transient int totalDocks;
 
     public class AdditionalProperty {
         @SerializedName("key")
         private String key;
         @SerializedName("value")
-        private int value;//PROBABLY CRASH CHANGE TO OBJECT
+        private Object value;//PROBABLY CRASH CHANGE TO OBJECT
 
         public String getKey() {
             return key;
@@ -35,11 +33,11 @@ public class BikePoint {
             this.key = key;
         }
 
-        public int getValue() {
+        public Object getValue() {
             return value;
         }
 
-        public void setValue(int value) {
+        public void setValue(Object value) {
             this.value = value;
         }
     }
@@ -85,12 +83,12 @@ public class BikePoint {
         this.lat = lat;
     }
 
-    public int getAvailableBikes() {
-        return availableBikes;
+    public int getAvailableDocks() {
+        return availableDocks;
     }
 
-    public void setAvailableBikes(int availableBikes) {
-        this.availableBikes = availableBikes;
+    public void setAvailableDocks(int availableDocks) {
+        this.availableDocks = availableDocks;
     }
 
     public int getTotalDocks() {

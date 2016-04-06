@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.keltapps.testkitcard.fragments.MainFragment;
+import com.keltapps.testkitcard.fragments.BikePointsListFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,8 +15,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        MainFragment mainFragment = new MainFragment();
-        fragmentTransaction.add(R.id.mainActivity_fragment_container, mainFragment, getString(R.string.fragment_mainFragment));
+        BikePointsListFragment bikePointsListFragment = new BikePointsListFragment();
+        fragmentTransaction.add(R.id.mainActivity_fragment_container, bikePointsListFragment, getString(R.string.fragment_bikePointsListFragment));
         fragmentTransaction.commit();
     }
 }

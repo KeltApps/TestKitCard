@@ -2,5 +2,7 @@
     <string name="app_name">TestKitCard</string>
 
     <!--Fragments names-->
-    <string name="fragment.mainFragment">MainFragment</string>
+    <string name="fragment.bikePointsListFragment">BikePointsListFragment</string>
+    <!--BikePointsListFragment-->
+    <string name="bikePointList.information">%1$s available docks of %2$s</string>
 </resources>

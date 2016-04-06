@@ -15,12 +15,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * Created by sergio on 6/04/16 for KelpApps.
- */
+
 public class FeedDatabase extends SQLiteOpenHelper {
     private static final String TAG = FeedDatabase.class.getSimpleName();
-    private static final String KEY_AVAILABLE_BIKES = "NbBikes";
+    private static final String KEY_AVAILABLE_DOCKS = "NbEmptyDocks";
     private static final String KEY_TOTAL_DOCKS = "NbDocks";
 
     public static final String DATABASE_NAME = "Feed.db";
@@ -63,7 +61,7 @@ public class FeedDatabase extends SQLiteOpenHelper {
     private void insertBikePoint(
             String idBikePoint,
             String commonName,
-            int availableBikes,
+            int availableDocks,
             int totalDocks,
             double lat,
             double lon) {
@@ -71,7 +69,7 @@ public class FeedDatabase extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(ScriptDatabase.ColumnBikePoint.ID_BIKE_POINT, idBikePoint);
         values.put(ScriptDatabase.ColumnBikePoint.COMMON_NAME, commonName);
-        values.put(ScriptDatabase.ColumnBikePoint.AVAILABLE_BIKES, availableBikes);
+        values.put(ScriptDatabase.ColumnBikePoint.AVAILABLE_DOCKS, availableDocks);
         values.put(ScriptDatabase.ColumnBikePoint.TOTAL_DOCKS, totalDocks);
         values.put(ScriptDatabase.ColumnBikePoint.LATITUDE, lat);
         values.put(ScriptDatabase.ColumnBikePoint.LONGITUDE, lon);
@@ -87,7 +85,7 @@ public class FeedDatabase extends SQLiteOpenHelper {
     private void updateBikePoint(int id,
                                  String idBikePoint,
                                  String commonName,
-                                 int availableBikes,
+                                 int availableDocks,
                                  int totalDocks,
                                  double lat,
                                  double lon) {
@@ -95,7 +93,7 @@ public class FeedDatabase extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(ScriptDatabase.ColumnBikePoint.ID_BIKE_POINT, idBikePoint);
         values.put(ScriptDatabase.ColumnBikePoint.COMMON_NAME, commonName);
-        values.put(ScriptDatabase.ColumnBikePoint.AVAILABLE_BIKES, availableBikes);
+        values.put(ScriptDatabase.ColumnBikePoint.AVAILABLE_DOCKS, availableDocks);
         values.put(ScriptDatabase.ColumnBikePoint.TOTAL_DOCKS, totalDocks);
         values.put(ScriptDatabase.ColumnBikePoint.LATITUDE, lat);
         values.put(ScriptDatabase.ColumnBikePoint.LONGITUDE, lon);
@@ -114,10 +112,10 @@ public class FeedDatabase extends SQLiteOpenHelper {
         HashMap<String, BikePoint> entryMap = new HashMap<>();
         for (BikePoint bikePoint : listBikePoint) {
             for (BikePoint.AdditionalProperty additionalProperty : bikePoint.getAdditionalPropertyLinkedList()) {
-                if (additionalProperty.getKey().equals(KEY_AVAILABLE_BIKES))
-                    bikePoint.setAvailableBikes(additionalProperty.getValue());
+                if (additionalProperty.getKey().equals(KEY_AVAILABLE_DOCKS))
+                    bikePoint.setAvailableDocks(Integer.parseInt((String)additionalProperty.getValue()));
                 else if (additionalProperty.getKey().equals(KEY_TOTAL_DOCKS))
-                    bikePoint.setTotalDocks(additionalProperty.getValue());
+                    bikePoint.setTotalDocks(Integer.parseInt((String)additionalProperty.getValue()));
             }
             entryMap.put(bikePoint.getIdBikePoint(), bikePoint);
         }
@@ -134,7 +132,7 @@ public class FeedDatabase extends SQLiteOpenHelper {
                             c.getInt(c.getColumnIndex(ScriptDatabase.ColumnBikePoint.ID)),
                             match.getIdBikePoint(),
                             match.getCommonName(),
-                            match.getAvailableBikes(),
+                            match.getAvailableDocks(),
                             match.getTotalDocks(),
                             match.getLat(),
                             match.getLon()
@@ -148,7 +146,7 @@ public class FeedDatabase extends SQLiteOpenHelper {
             insertBikePoint(
                     bikePoint.getIdBikePoint(),
                     bikePoint.getCommonName(),
-                    bikePoint.getAvailableBikes(),
+                    bikePoint.getAvailableDocks(),
                     bikePoint.getTotalDocks(),
                     bikePoint.getLat(),
                     bikePoint.getLon()
